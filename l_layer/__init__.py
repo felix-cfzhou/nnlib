@@ -1,5 +1,9 @@
+import numpy as np
+
 from utils.activation import relu, sigmoid
+from utils.derivative import relu_backward, sigmoid_backward
 from l_layer.forward import linear_forward_activation
+from l_layer.backward import linear_backward_activation
 
 
 class LLayer:
@@ -35,3 +39,45 @@ class LLayer:
         caches["A"][L] = AL
 
         return AL, caches
+
+    @staticmethod
+    def model_backward(AL, Y, parameters, caches):
+        """
+        Implement backward propgation of arbitrary model
+
+        Arguments:
+        Al -- output of forward prop
+        Y -- labels for data
+        parameters -- dictionary of weights W, b
+        caches -- dictionary of post activation values A
+
+        Returns:
+        grads -- dictionary of lists for gradients of each layer
+        """
+
+        grads = dict(dA=[], dW=[], db=[])
+        L = len(caches)
+        Y = Y.reshape(AL.shape)
+
+        dAL = - (np.divide(Y, AL) - np.divide(1-Y, 1-AL))
+        grads["dA"][L] = dAL
+        dA_prev, dWL, dbL = linear_backward_activation(
+                dAL,
+                ((caches["A"][L-1], parameters["W"][L]), caches["A"][L]),
+                sigmoid_backward
+                )
+        grads["dA"][L-1] = dA_prev
+        grads["dW"][L] = dWL
+        grads["db"][L] = dbL
+
+        for l in reversed(range(1, L)):
+            dA_prev, dWl, dbl = linear_backward_activation(
+                    grads["dA"][l],
+                    ((caches["A"][l-1], parameters["W"][l]), caches["A"][l]),
+                    relu_backward
+                    )
+            grads["dA"][l-1] = dA_prev
+            grads["dW"][l] = dWl
+            grads["db"][l] = dbl
+
+        return grads
