@@ -7,10 +7,10 @@ def initialize_parameters(layers_dims):
     layer_dims -- python list containing tuples of dimensions of each layer in the network
 
     Returns:
-    parameters -- python dictionary containing lists of Weights "W[]" and list of bias vectors "b[]"
+    parameters -- python dictionary containing dictionary of Weights "W[]" and dictionary of bias vectors "b[]"
     """
 
-    parameters = dict(W=[], b=[])
+    parameters = dict(W={}, b={})
     L = len(layers_dims)
 
     for l in range(1, L):
