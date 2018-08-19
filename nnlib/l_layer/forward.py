@@ -1,6 +1,6 @@
 import numpy as np
 
-from utils.activation import relu, sigmoid
+from nnlib.utils.activation import relu, sigmoid
 
 
 def linear_forward(A_prev, W, b):

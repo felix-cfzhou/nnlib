@@ -1,7 +1,7 @@
 from numpy.testing import assert_allclose
 from numpy import array
 
-from utils.activation import sigmoid, relu
+from nnlib.utils.activation import sigmoid, relu
 
 
 def test_sigmoid():

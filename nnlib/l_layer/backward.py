@@ -1,6 +1,6 @@
 import numpy as np
 
-from utils.derivative import relu_backward, sigmoid_backward
+from nnlib.utils.derivative import relu_backward, sigmoid_backward
 
 
 def linear_backward(dZ, cache):
