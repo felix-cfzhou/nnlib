@@ -1,7 +1,7 @@
 from nnlib.utils.initialize import initialize_parameters
 from nnlib.utils.update import update_parameters
 from nnlib.utils.cost import cross_entropy
-from nnlib._layer.forward import model_forward
+from nnlib.l_layer.forward import model_forward
 from nnlib.l_layer.backward import model_backward
 
 

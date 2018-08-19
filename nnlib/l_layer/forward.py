@@ -52,7 +52,7 @@ def model_forward(X, parameters):
     AL -- last post-activation value
     caches -- dictionary of lists containing values computed in the forward pass
     """
-    caches = dict(A=[])
+    caches = dict(A={})
     A = X
     L = len(parameters["W"])
 
