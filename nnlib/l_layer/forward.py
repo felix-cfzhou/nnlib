@@ -32,12 +32,13 @@ def linear_forward_activation(A_prev, W, b, activation_func):
 
     Returns:
     A -- output of activation function
+    Z -- cached pre activation matrix
     """
 
     Z = linear_forward(A_prev, W, b)
     A = activation_func(Z)
 
-    return A
+    return A, Z
 
 
 def model_forward(X, parameters):
@@ -52,18 +53,21 @@ def model_forward(X, parameters):
     AL -- last post-activation value
     caches -- dictionary of lists containing values computed in the forward pass
     """
-    caches = dict(A={})
+    caches = dict(A={}, Z={})
     A = X
     L = len(parameters["W"])
+    caches['A'][0] = X
 
     for l in range(1, L):
         A_prev = A
         Wl = parameters["W"][l]
         bl = parameters["b"][l]
-        A = linear_forward_activation(A_prev, Wl, bl, relu)
+        A, Z = linear_forward_activation(A_prev, Wl, bl, relu)
         caches["A"][l] = A
+        caches["Z"][l] = Z
 
-    AL = linear_forward_activation(A, parameters["W"][L], parameters["b"][L], sigmoid)
+    AL, ZL = linear_forward_activation(A, parameters["W"][L], parameters["b"][L], sigmoid)
     caches["A"][L] = AL
+    caches["Z"][L] = ZL
 
     return AL, caches

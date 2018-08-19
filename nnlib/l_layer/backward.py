@@ -33,13 +33,12 @@ def linear_backward_activation(dA, cache, backward_func):
 
     Arguments:
     dA -- post-activation gradient for current layer l
-    cache -- tuple ((A_prev, W), A)
+    cache -- tuple ((A_prev, W), (Z, A))
     backward_func -- calculates derivative of activation
     """
 
     linear_cache, activation_cache = cache
-
-    dZ = backward_func(dA, linear_cache)
+    dZ = backward_func(dA, activation_cache)
     dA_prev, dW, db = linear_backward(dZ, linear_cache)
 
     return dA_prev, dW, db
@@ -59,29 +58,29 @@ def model_backward(AL, Y, parameters, caches):
     grads -- dictionary of lists for gradients of each layer
     """
 
-    grads = dict(dA=[], dW=[], db=[])
-    L = len(caches)
+    grads = dict(dA={}, dW={}, db={})
+    L = len(caches["Z"])
     Y = Y.reshape(AL.shape)
 
     dAL = - (np.divide(Y, AL) - np.divide(1-Y, 1-AL))
     grads["dA"][L] = dAL
     dA_prev, dWL, dbL = linear_backward_activation(
             dAL,
-            ((caches["A"][L-1], parameters["W"][L]), caches["A"][L]),
+            ((caches["A"][L-1], parameters["W"][L]), (caches["Z"][L], caches["A"][L])),
             sigmoid_backward
             )
     grads["dA"][L-1] = dA_prev
     grads["dW"][L] = dWL
     grads["db"][L] = dbL
 
-    for l in reversed(range(1, L)):
+    for l in reversed(range(L-1)):
         dA_prev, dWl, dbl = linear_backward_activation(
-                grads["dA"][l],
-                ((caches["A"][l-1], parameters["W"][l]), caches["A"][l]),
+                grads["dA"][l+1],
+                ((caches["A"][l], parameters["W"][l+1]), (caches["Z"][l+1], caches["A"][l+1])),
                 relu_backward
                 )
-        grads["dA"][l-1] = dA_prev
-        grads["dW"][l] = dWl
-        grads["db"][l] = dbl
+        grads["dA"][l] = dA_prev
+        grads["dW"][l+1] = dWl
+        grads["db"][l+1] = dbl
 
     return grads

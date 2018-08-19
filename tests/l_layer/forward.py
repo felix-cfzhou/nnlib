@@ -24,4 +24,4 @@ def test_model_forward():
     ans = array([[0.03921668, 0.70498921, 0.19734387, 0.04728177]])
 
     assert_allclose(AL, ans)
-    assert(len(caches["A"]) == 3)
+    assert(len(caches["A"]) == 4)
