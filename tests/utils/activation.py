@@ -11,3 +11,12 @@ def test_sigmoid():
             arr,
             array([[0.73105858, 0.88079708]])
             )
+
+
+def test_relu():
+    arr = relu(array([[0.5, -0.5]]))
+
+    assert_allclose(
+            arr,
+            array([[0.5, 0]])
+            )
