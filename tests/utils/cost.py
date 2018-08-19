@@ -1,5 +1,4 @@
 from numpy.testing import assert_allclose
-from numpy.random import RandomState
 from numpy import array
 
 from nnlib.utils.cost import cross_entropy

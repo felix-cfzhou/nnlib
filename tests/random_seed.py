@@ -1,4 +1,3 @@
-from numpy.random import RandomState
 from numpy import array
 from numpy.testing import assert_allclose
 
