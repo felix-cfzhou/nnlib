@@ -1,6 +1,7 @@
 import pytest
+from numpy.random import RandomState
 
 
-@pytest.fixture(scope='session')
-def random_seed():
-    return 1
+@pytest.fixture
+def random_state():
+    return RandomState(1)

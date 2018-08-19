@@ -3,9 +3,8 @@ from numpy import array
 from numpy.testing import assert_allclose
 
 
-def test_seed(random_seed):
-    rs = RandomState(random_seed)
-    ex_arr = rs.randn(1, 2)
+def test_seed(random_state):
+    ex_arr = random_state.randn(1, 2)
 
     assert_allclose(
             ex_arr,
