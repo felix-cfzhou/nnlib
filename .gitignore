@@ -5,3 +5,6 @@
 # python caches
 __pycache__/
 .pytest_cache/
+
+# eggs
+*.egg-info/
