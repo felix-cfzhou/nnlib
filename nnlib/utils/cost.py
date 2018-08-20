@@ -14,6 +14,6 @@ def cross_entropy(AL, Y):
     """
 
     m = Y.shape[1]
-    cost = np.squeeze(-np.sum((Y*np.log(AL) + (1-Y)*np.log(1-AL)), keepdims=True)/m)
+    cost = np.squeeze(-np.sum(Y * (np.log(AL)) + (1-Y) * (np.log(1-AL)), keepdims=True)/m)
 
     return cost
