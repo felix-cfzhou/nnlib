@@ -2,3 +2,4 @@ pip-tools
 flake8
 pytest
 ipython
+h5py
