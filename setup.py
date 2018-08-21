@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 def readme():
@@ -8,7 +8,7 @@ def readme():
 
 setup(
         name='nnlib',
-        version='0.1.2',
+        version='0.1.4',
         description='numpy only neural network library',
         long_description=readme(),
         long_description_content_type='text/markdown',
@@ -24,7 +24,7 @@ setup(
         author_email='felix990302@yahoo.ca',
         license='Apache2',
         url='https://github.com/felix990302/nnlib',
-        packages=['nnlib'],
+        packages=find_packages(),
         install_requires=[
             'numpy>=1.15.0'
             ]
