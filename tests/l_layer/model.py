@@ -4,7 +4,7 @@ from pytest import approx, mark
 from nnlib.l_layer import LLayer
 
 
-@mark.timeout(1200)
+@mark.timeout(1800)
 def test_llayer(cat_dataset):
     np.random.seed(1)
 

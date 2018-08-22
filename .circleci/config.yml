@@ -30,6 +30,7 @@ jobs:
                 command: |
                     source ~/.venv/bin/activate
                     pytest -vvvv -s -r a
+                no_output_timeout: 30m
             - save_cache:
                 key: server-deps-{{ .Branch }}-{{ checksum "requirements.txt" }}-{{ checksum "dev-requirements.txt" }}
                 paths:
