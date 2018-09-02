@@ -37,4 +37,4 @@ def test_llayer(cat_dataset):
     predictions_acc = model.verify_accuracy(test_x, test_y)
 
     assert(train_acc == approx(1.0))
-    assert(predictions_acc == approx(0.72))
+    assert(predictions_acc == approx(0.74))
