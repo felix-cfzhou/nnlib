@@ -10,7 +10,7 @@ def he_initialization(layers_dims, layer):
     Returns:
     constant -- numerical constant used to scale the initialized weights
     """
-    return np.sqrt(2 / layers_dims[layer-1])
+    return np.sqrt(np.divide(2, layers_dims[layer-1]))
 
 
 def initialize_parameters(layers_dims, initialization_func=he_initialization):
