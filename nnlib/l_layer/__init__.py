@@ -24,8 +24,8 @@ class LLayer:
             grads = model_backward(AL, self.Y, self.parameters, caches)
             self.parameters = update_parameters(self.parameters, grads, learning_rate)
             cost = cross_entropy(AL, self.Y)
-            if verbose and i % 100 == 0:
-                print(str(i) + ' iterations: ' + str(cost))
+            if verbose and i % 20 == 0:
+                print(str(i), 'iterations:', str(cost))
                 self.costs.append(cost)
 
     def verify_cost(self, X_test, Y_test):
