@@ -8,11 +8,6 @@ from numpy.random import RandomState
 testdir = path.abspath(path.dirname(__file__))
 
 
-@pytest.fixture
-def random_state():
-    return RandomState(1)
-
-
 @pytest.fixture(scope='session')
 def cat_dataset():
     train_dataset = h5py.File(path.join(testdir, 'datasets/train_catvnoncat.h5'), "r")
