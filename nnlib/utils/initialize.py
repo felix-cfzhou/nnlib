@@ -26,7 +26,7 @@ def initialize_parameters(layers_dims, initialization_func=he_initialization):
     L = len(layers_dims)
 
     for l in range(1, L):
-        parameters["W"][l] = np.random.rand(layers_dims[l], layers_dims[l-1])*initialization_func(layers_dims, l)
+        parameters["W"][l] = np.random.randn(layers_dims[l], layers_dims[l-1])*initialization_func(layers_dims, l)
         parameters["b"][l] = np.zeros((layers_dims[l], 1))
 
     return parameters
