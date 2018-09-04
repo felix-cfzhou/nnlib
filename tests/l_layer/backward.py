@@ -3,7 +3,6 @@ from numpy.random import RandomState
 from numpy.testing import assert_allclose
 
 from nnlib.l_layer.backward import linear_backward, linear_backward_activation, model_backward
-from nnlib.l_layer.forward import model_forward
 from nnlib.utils.derivative import sigmoid_backward, relu_backward
 from nnlib.utils.activation import sigmoid, relu
 
