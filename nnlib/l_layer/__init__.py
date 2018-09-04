@@ -32,6 +32,8 @@ class LLayer:
         alpha -- l2 regularization term
 
         keep_prob -- dropout probability
+
+        verbose -- print cost every 20 iterations
         """
 
         self.X = X

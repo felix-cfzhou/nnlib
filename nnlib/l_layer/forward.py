@@ -42,6 +42,8 @@ def linear_forward_activation(A_prev, W, b, activation_func, keep_prob):
 
     keep_prob -- dropout probability
 
+    keep_prob -- dropout probability
+
     Returns:
 
     A -- output of activation function
