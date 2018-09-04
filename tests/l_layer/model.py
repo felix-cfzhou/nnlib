@@ -8,7 +8,7 @@ from nnlib.l_layer import LLayer
 def test_llayer(cat_dataset):
     np.random.seed(1)
 
-    train_x_orig, train_y, test_x_orig, test_y, classes = cat_dataset
+    train_x_orig, train_y, test_x_orig, test_y, _ = cat_dataset
 
     # Reshape the training and test examples
     train_x_flatten = train_x_orig.reshape(train_x_orig.shape[0], -1).T
@@ -31,8 +31,8 @@ def test_llayer(cat_dataset):
             layers_dims=(n_x, n_h, n_y),
             num_iterations=2500,
             verbose=False,
-            learning_rate=0.3,
-            alpha=0.7,
+            learning_rate=0.01,
+            alpha=0.3,
             keep_prob=0.86,
             )
 
@@ -40,4 +40,4 @@ def test_llayer(cat_dataset):
     predictions_acc = model.verify_accuracy(test_x, test_y)
 
     assert(train_acc == approx(1.0))
-    assert(predictions_acc == approx(0.74))
+    assert(predictions_acc == approx(0.76))
