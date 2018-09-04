@@ -32,7 +32,7 @@ def relu(Z):
     Returns:
 
     A -- output of rulu(Z)
-    
+
     cache -- Z, useful for back propagation
     """
 

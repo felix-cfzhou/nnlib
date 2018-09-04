@@ -30,10 +30,10 @@ class LLayer:
         learning_rate -- learning rate of gradient descent
 
         alpha -- l2 regularization term
-        
+
         keep_prob -- dropout probability
         """
-    
+
         self.X = X
         self.Y = Y
         self.layers_dims = layers_dims

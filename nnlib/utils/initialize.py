@@ -23,7 +23,7 @@ def initialize_parameters(layers_dims, initialization_func=he_initialization):
     layer_dims -- python list containing tuples of dimensions of each layer in the network
 
     Returns:
-    
+
     parameters -- python dictionary containing dictionary of Weights "W[]" and dictionary of bias vectors "b[]"
     """
 

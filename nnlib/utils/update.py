@@ -11,7 +11,7 @@ def update_parameters(parameters, grads, learning_rate):
     learning_rate -- hyperperameter to be tuned
 
     Returns:
-    
+
     parameters -- python dictionary containing updated parameters
     """
 

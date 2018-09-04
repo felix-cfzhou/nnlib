@@ -16,7 +16,7 @@ def cross_entropy(AL, Y, parameters, alpha):
     alpha -- l2 regularization parameter
 
     Returns:
-    
+
     cost -- cross-entropy cost with l2 regularization
     """
 

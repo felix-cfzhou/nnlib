@@ -79,7 +79,7 @@ def model_backward(AL, Y, parameters, caches, alpha, keep_prob):
     keep_prob -- dropout probability
 
     Returns:
-    
+
     grads -- dictionary of lists for gradients of each layer
     """
 

@@ -33,7 +33,7 @@ def relu_backward(dA, cache):
     cache -- (Z, A), the pre/post-activation matrix
 
     Returns:
-    
+
     dZ -- gradient of cost with respect to Z
     """
 
