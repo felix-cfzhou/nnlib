@@ -38,6 +38,9 @@ def linear_forward_activation(A_prev, W, b, activation_func, keep_prob):
     b -- bias vector
 
     activation_func -- activation function (from utils)
+    keep_prob -- dropout probability
+
+    keep_prob -- dropout probability
 
     keep_prob -- dropout probability
 
