@@ -12,18 +12,19 @@ class LLayer:
     Simple model of arbitrary depth and complexity
     """
 
-    def fit_params(self, X, Y, layers_dims, num_iterations, learning_rate=0.0075, alpha=0, verbose=True):
+    def fit_params(self, X, Y, layers_dims, num_iterations, learning_rate=0.0075, alpha=0, keep_prob=1, verbose=True):
         self.X = X
         self.Y = Y
         self.layers_dims = layers_dims
         self.parameters = initialize_parameters(layers_dims)
         self.learning_rate = learning_rate,
         self.alpha = alpha
+        self.keep_prob = keep_prob
         self.costs = []
 
         for i in range(0, num_iterations):
-            AL, caches = model_forward(self.X, self.parameters)
-            grads = model_backward(AL, self.Y, self.parameters, caches, self.alpha)
+            AL, caches = model_forward(self.X, self.parameters, self.keep_prob)
+            grads = model_backward(AL, self.Y, self.parameters, caches, self.alpha, self.keep_prob)
             self.parameters = update_parameters(self.parameters, grads, learning_rate)
             cost = cross_entropy(AL, self.Y, self.parameters, self.alpha)
             self.costs.append(cost)
@@ -31,19 +32,19 @@ class LLayer:
                 print(str(i), 'iterations:', str(cost))
 
     def verify_cost(self, X_test, Y_test):
-        AL, caches = model_forward(X_test, self.parameters)
+        AL, _ = model_forward(X_test, self.parameters, keep_prob=1)
         cost = cross_entropy(AL, Y_test, self.parameters, self.alpha)
 
         return cost
 
     def predict(self, X):
-        AL, caches = model_forward(X, self.parameters)
+        AL, _ = model_forward(X, self.parameters, keep_prob=1)
 
         return AL >= 0.5
 
     def verify_accuracy(self, X_test, Y_test):
         m = X_test.shape[1]
         p = self.predict(X_test)
-        accuracy = np.sum((p == Y_test)/m)
+        accuracy = np.sum(p == Y_test) / m
 
         return accuracy
