@@ -12,13 +12,14 @@ class LLayer:
     Simple model of arbitrary depth and complexity
     """
 
-    def fit_params(self, X, Y, layers_dims, num_iterations, learning_rate=0.0075, alpha=0, verbose=True):
+    def fit_params(self, X, Y, layers_dims, num_iterations, learning_rate=0.0075, alpha=0, keep_prob=1, verbose=True):
         self.X = X
         self.Y = Y
         self.layers_dims = layers_dims
         self.parameters = initialize_parameters(layers_dims)
         self.learning_rate = learning_rate,
         self.alpha = alpha
+        self.keep_prob = keep_prob
         self.costs = []
 
         for i in range(0, num_iterations):
