@@ -12,25 +12,27 @@ class LLayer:
     Simple model of arbitrary depth and complexity
     """
 
-    def fit_params(self, X, Y, layers_dims, num_iterations, learning_rate=0.0075, verbose=True):
+    def fit_params(self, X, Y, layers_dims, num_iterations, learning_rate=0.0075, alpha=0, verbose=True):
         self.X = X
         self.Y = Y
         self.layers_dims = layers_dims
         self.parameters = initialize_parameters(layers_dims)
+        self.learning_rate = learning_rate,
+        self.alpha = alpha
         self.costs = []
 
         for i in range(0, num_iterations):
             AL, caches = model_forward(self.X, self.parameters)
-            grads = model_backward(AL, self.Y, self.parameters, caches)
+            grads = model_backward(AL, self.Y, self.parameters, caches, self.alpha)
             self.parameters = update_parameters(self.parameters, grads, learning_rate)
-            cost = cross_entropy(AL, self.Y)
+            cost = cross_entropy(AL, self.Y, self.parameters, self.alpha)
             self.costs.append(cost)
             if verbose and i % 20 == 0:
                 print(str(i), 'iterations:', str(cost))
 
     def verify_cost(self, X_test, Y_test):
         AL, caches = model_forward(X_test, self.parameters)
-        cost = cross_entropy(AL, Y_test)
+        cost = cross_entropy(AL, Y_test, self.parameters, self.alpha)
 
         return cost
 

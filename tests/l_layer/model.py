@@ -30,7 +30,8 @@ def test_llayer(cat_dataset):
             train_y,
             layers_dims=(n_x, n_h, n_y),
             num_iterations=2500,
-            verbose=False
+            verbose=False,
+            alpha=0,
             )
 
     train_acc = model.verify_accuracy(train_x, train_y)

@@ -2,15 +2,9 @@ from os import path
 import pytest
 import h5py
 import numpy as np
-from numpy.random import RandomState
 
 
 testdir = path.abspath(path.dirname(__file__))
-
-
-@pytest.fixture
-def random_state():
-    return RandomState(1)
 
 
 @pytest.fixture(scope='session')
