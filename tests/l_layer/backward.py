@@ -14,7 +14,7 @@ def test_linear_backward():
     A = rand.randn(3, 2)
     W = rand.randn(1, 3)
 
-    dA_prev, dW, db = linear_backward(dZ, (A, W), 0)
+    dA_prev, dW, db = linear_backward(dZ, (A, 1, W), alpha=0, keep_prob=1)
 
     assert_allclose(dA_prev, [
         [0.51822968, -0.19517421],
@@ -31,7 +31,7 @@ def test_linear_backward_activation_sigmoid():
     W = rand.randn(1, 3)
     b = rand.randn(1, 1)  # noqa: F841
     Z = rand.randn(1, 2)
-    dA_prev, dW, db = linear_backward_activation(dA, ((A, W), (Z, sigmoid(Z))), sigmoid_backward, 0)
+    dA_prev, dW, db = linear_backward_activation(dA, ((A, 1, W), (Z, sigmoid(Z))), sigmoid_backward, alpha=0, keep_prob=1)
     assert_allclose(dA_prev, array([
         [0.11017994, 0.01105339],
         [0.09466817, 0.00949723],
@@ -47,7 +47,7 @@ def test_linear_backward_activation_relu():
     W = rand.randn(1, 3)
     b = rand.randn(1, 1)  # noqa: F841
     Z = rand.randn(1, 2)
-    dA_prev, dW, db = linear_backward_activation(dA, ((A, W), (Z, relu(Z))), relu_backward, 0)
+    dA_prev, dW, db = linear_backward_activation(dA, ((A, 1, W), (Z, relu(Z))), relu_backward, alpha=0, keep_prob=1)
     assert_allclose(dA_prev, array([
         [0.44090989, 0.],
         [0.37883606, 0.],
@@ -77,10 +77,11 @@ def test_model_backward():
             )
     caches = dict(
             Z={1: Z1, 2: Z2},
-            A={0: X, 1: A1, 2: sigmoid(Z2)}
+            A={0: X, 1: A1, 2: sigmoid(Z2)},
+            D={0: 1, 1: 1}
             )
 
-    grads = model_backward(AL, Y, parameters, caches, 0)
+    grads = model_backward(AL, Y, parameters, caches, alpha=0, keep_prob=1)
 
     assert_allclose(
             grads["dW"][1],
@@ -146,11 +147,12 @@ def test_model_backward_l2_regularization():
             )
     caches = dict(
             Z={1: Z1, 2: Z2, 3: Z3},
-            A={0: X, 1: A1, 2: A2, 3: sigmoid(A3)}
+            A={0: X, 1: A1, 2: A2, 3: sigmoid(A3)},
+            D={0: 1, 1: 1, 2: 1}
             )
 
     AL, caches = model_forward(X, parameters, keep_prob=1)
-    grads = model_backward(AL, Y, parameters, caches, alpha=0.7)
+    grads = model_backward(AL, Y, parameters, caches, alpha=0.7, keep_prob=1)
 
     dW1 = array([[-0.25604646,  0.12298827, - 0.28297129],
                  [-0.17706303,  0.34536094, - 0.4410571]])

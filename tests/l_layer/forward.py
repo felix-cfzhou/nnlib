@@ -46,4 +46,4 @@ def test_model_forward_dropout():
     ans = np.array([[0.36974721, 0.00305176, 0.04565099, 0.49683389, 0.36974721]])
 
     assert_allclose(AL, ans, rtol=1e-05)
-    assert(len(caches["A"]) == len(caches["D"])+2)
+    assert(len(caches["A"]) == len(caches["D"])+1)

@@ -64,6 +64,7 @@ def model_forward(X, parameters, keep_prob):
     A = X
     L = len(parameters["W"])
     caches['A'][0] = X
+    caches['D'][0] = 1  # this ensures there is a value of D for every value of A
 
     for l in range(1, L):
 
