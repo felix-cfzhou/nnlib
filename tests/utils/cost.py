@@ -24,6 +24,7 @@ def test_cross_entropy():
             parameters,
             alpha=0
             )
+
     assert_allclose(cost, 0.693058761039)
 
 
