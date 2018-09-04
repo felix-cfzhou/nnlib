@@ -32,13 +32,13 @@ class LLayer:
                 print(str(i), 'iterations:', str(cost))
 
     def verify_cost(self, X_test, Y_test):
-        AL, caches = model_forward(X_test, self.parameters, keep_prob=1)
+        AL, _ = model_forward(X_test, self.parameters, keep_prob=1)
         cost = cross_entropy(AL, Y_test, self.parameters, self.alpha)
 
         return cost
 
     def predict(self, X):
-        AL, caches = model_forward(X, self.parameters, keep_prob=1)
+        AL, _ = model_forward(X, self.parameters, keep_prob=1)
 
         return AL >= 0.5
 

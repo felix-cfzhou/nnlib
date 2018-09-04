@@ -76,7 +76,7 @@ def model_forward(X, parameters, keep_prob):
         caches["D"][l] = D
         caches["Z"][l] = Z
 
-    AL, DL, ZL = linear_forward_activation(A, parameters["W"][L], parameters["b"][L], sigmoid, keep_prob=1)
+    AL, _, ZL = linear_forward_activation(A, parameters["W"][L], parameters["b"][L], sigmoid, keep_prob=1)
     caches["A"][L] = AL
     caches["Z"][L] = ZL
 

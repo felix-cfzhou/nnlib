@@ -26,6 +26,7 @@ def test_model_forward():
     assert_allclose(AL, ans)
     assert(len(caches["A"]) == 4)
 
+
 def test_model_forward_dropout():
     rand = RandomState(1)
     X = rand.randn(3, 5)
