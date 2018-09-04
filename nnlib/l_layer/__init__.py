@@ -23,7 +23,7 @@ class LLayer:
 
         for i in range(0, num_iterations):
             AL, caches = model_forward(self.X, self.parameters)
-            grads = model_backward(AL, self.Y, self.parameters, caches)
+            grads = model_backward(AL, self.Y, self.parameters, caches, self.alpha)
             self.parameters = update_parameters(self.parameters, grads, learning_rate)
             cost = cross_entropy(AL, self.Y, self.parameters, self.alpha)
             self.costs.append(cost)

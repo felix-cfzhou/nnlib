@@ -3,13 +3,14 @@ import numpy as np
 from nnlib.utils.derivative import relu_backward, sigmoid_backward
 
 
-def linear_backward(dZ, cache):
+def linear_backward(dZ, cache, alpha):
     """
     Implement the linear portion of backward propagation
 
     Arguments:
     dZ -- Gradients of cost with respect to linear output of current layer l
     cache -- Tuple of values (A_prev, W) coming from forward prop in current layer
+    alpha -- l2 regularization term
 
     Returns:
     dA_prev -- Gradient of cost with respect to activation of previous layer (l-1)
@@ -20,14 +21,14 @@ def linear_backward(dZ, cache):
     A_prev, W = cache
     m = A_prev.shape[1]
 
-    dW = np.matmul(dZ, A_prev.T)/m
+    dW = np.matmul(dZ, A_prev.T)/m + alpha/m * W
     db = np.sum(dZ, axis=1, keepdims=True)/m
     dA_prev = np.matmul(W.T, dZ)
 
     return dA_prev, dW, db
 
 
-def linear_backward_activation(dA, cache, backward_func):
+def linear_backward_activation(dA, cache, backward_func, alpha):
     """
     Implement backward propagation of entire layer
 
@@ -35,16 +36,17 @@ def linear_backward_activation(dA, cache, backward_func):
     dA -- post-activation gradient for current layer l
     cache -- tuple ((A_prev, W), (Z, A))
     backward_func -- calculates derivative of activation
+    alpha -- l2 regularization term
     """
 
     linear_cache, activation_cache = cache
     dZ = backward_func(dA, activation_cache)
-    dA_prev, dW, db = linear_backward(dZ, linear_cache)
+    dA_prev, dW, db = linear_backward(dZ, linear_cache, alpha)
 
     return dA_prev, dW, db
 
 
-def model_backward(AL, Y, parameters, caches):
+def model_backward(AL, Y, parameters, caches, alpha):
     """
     Implement backward propgation of arbitrary model
 
@@ -53,6 +55,7 @@ def model_backward(AL, Y, parameters, caches):
     Y -- labels for data
     parameters -- dictionary of weights W, b
     caches -- dictionary of post activation values A
+    alpha -- l2 regularization term
 
     Returns:
     grads -- dictionary of lists for gradients of each layer
@@ -67,7 +70,8 @@ def model_backward(AL, Y, parameters, caches):
     dA_prev, dWL, dbL = linear_backward_activation(
             dAL,
             ((caches["A"][L-1], parameters["W"][L]), (caches["Z"][L], caches["A"][L])),
-            sigmoid_backward
+            sigmoid_backward,
+            alpha
             )
     grads["dA"][L-1] = dA_prev
     grads["dW"][L] = dWL
@@ -77,7 +81,8 @@ def model_backward(AL, Y, parameters, caches):
         dA_prev, dWl, dbl = linear_backward_activation(
                 grads["dA"][l+1],
                 ((caches["A"][l], parameters["W"][l+1]), (caches["Z"][l+1], caches["A"][l+1])),
-                relu_backward
+                relu_backward,
+                alpha
                 )
         grads["dA"][l] = dA_prev
         grads["dW"][l+1] = dWl
