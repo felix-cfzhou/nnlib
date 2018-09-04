@@ -13,6 +13,27 @@ class LLayer:
     """
 
     def fit_params(self, X, Y, layers_dims, num_iterations, learning_rate=0.0075, alpha=0, keep_prob=1, verbose=True):
+        """
+        fits model to parameters X, Y
+
+        Arguments:
+
+        X -- input of shape (num_features, m)
+
+        Y -- labels for data of shape (m, 1)
+
+        layers_dims -- len(layers_dims) determines depth of network,
+        layer_dims[l] determines number of nodes in layer l
+
+        num_iterations -- number of iterations to run the train
+
+        learning_rate -- learning rate of gradient descent
+
+        alpha -- l2 regularization term
+        
+        keep_prob -- dropout probability
+        """
+    
         self.X = X
         self.Y = Y
         self.layers_dims = layers_dims
