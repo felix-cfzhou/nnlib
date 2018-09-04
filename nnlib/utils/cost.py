@@ -10,6 +10,8 @@ def cross_entropy(AL, Y, parameters, alpha):
     AL -- probability vector corresponding to label predictions
 
     Y -- result vector
+    parameters -- self explanatory
+    alpha -- l2 regularization parameter
 
     parameters -- self explanatory
 
