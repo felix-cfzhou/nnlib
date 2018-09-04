@@ -23,7 +23,7 @@ class LLayer:
         self.costs = []
 
         for i in range(0, num_iterations):
-            AL, caches = model_forward(self.X, self.parameters)
+            AL, caches = model_forward(self.X, self.parameters, self.keep_prob)
             grads = model_backward(AL, self.Y, self.parameters, caches, self.alpha)
             self.parameters = update_parameters(self.parameters, grads, learning_rate)
             cost = cross_entropy(AL, self.Y, self.parameters, self.alpha)
@@ -32,19 +32,19 @@ class LLayer:
                 print(str(i), 'iterations:', str(cost))
 
     def verify_cost(self, X_test, Y_test):
-        AL, caches = model_forward(X_test, self.parameters)
+        AL, caches = model_forward(X_test, self.parameters, keep_prob=1)
         cost = cross_entropy(AL, Y_test, self.parameters, self.alpha)
 
         return cost
 
     def predict(self, X):
-        AL, caches = model_forward(X, self.parameters)
+        AL, caches = model_forward(X, self.parameters, keep_prob=1)
 
         return AL >= 0.5
 
     def verify_accuracy(self, X_test, Y_test):
         m = X_test.shape[1]
         p = self.predict(X_test)
-        accuracy = np.sum((p == Y_test)/m)
+        accuracy = np.sum(p == Y_test) / m
 
         return accuracy

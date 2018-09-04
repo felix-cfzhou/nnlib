@@ -149,7 +149,7 @@ def test_model_backward_l2_regularization():
             A={0: X, 1: A1, 2: A2, 3: sigmoid(A3)}
             )
 
-    AL, caches = model_forward(X, parameters)
+    AL, caches = model_forward(X, parameters, keep_prob=1)
     grads = model_backward(AL, Y, parameters, caches, alpha=0.7)
 
     dW1 = array([[-0.25604646,  0.12298827, - 0.28297129],
