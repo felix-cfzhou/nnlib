@@ -6,10 +6,13 @@ def sigmoid_backward(dA, cache):
     partial derivative of single SIGMOID unit
 
     Arguments:
+
     dA -- post-activation gradient
+
     cache -- (Z, A), the pre/post-activation matrix
 
     Returns:
+
     dZ -- gradient of cost with respect to Z
     """
 
@@ -24,10 +27,13 @@ def relu_backward(dA, cache):
     partial derivative of single RELU unit
 
     Arguments:
+
     dA -- post-activation gradient
+
     cache -- (Z, A), the pre/post-activation matrix
 
     Returns:
+
     dZ -- gradient of cost with respect to Z
     """
 

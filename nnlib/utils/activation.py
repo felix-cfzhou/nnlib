@@ -6,10 +6,13 @@ def sigmoid(Z):
     sigmoid activation function
 
     Arguments:
+
     Z -- numpy array
 
     Returns:
+
     A -- output of sigmoid(Z)
+
     cache -- Z, useful for back propagation
     """
 
@@ -23,10 +26,13 @@ def relu(Z):
     RELU activation function
 
     Arguments:
+
     Z -- numpy array
 
     Returns:
+
     A -- output of rulu(Z)
+
     cache -- Z, useful for back propagation
     """
 

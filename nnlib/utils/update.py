@@ -3,11 +3,15 @@ def update_parameters(parameters, grads, learning_rate):
     Update parameters using gradient descent
 
     Arguments:
+
     parameters -- python dictionary of parameters
+
     grads -- python dictionary containing gradients
+
     learning_rate -- hyperperameter to be tuned
 
     Returns:
+
     parameters -- python dictionary containing updated parameters
     """
 

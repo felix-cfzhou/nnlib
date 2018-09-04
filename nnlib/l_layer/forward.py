@@ -8,11 +8,15 @@ def linear_forward(A_prev, W, b):
     Implement linear part of forward propagation
 
     Arguments:
+
     A_prev -- activations from previous layer or input data
+
     W -- weight matrix
+
     b -- bias vector
 
     Returns:
+
     Z -- input for activation function
     """
 
@@ -24,15 +28,24 @@ def linear_forward(A_prev, W, b):
 def linear_forward_activation(A_prev, W, b, activation_func, keep_prob):
     """
     Implement forward propagation
+
     Arguments:
+
     A_prev -- activation from previous layer or input data
+
     W -- weight matrix
+
     b -- bias vector
+
     activation_func -- activation function (from utils)
     keep_prob -- dropout probability
 
+    keep_prob -- dropout probability
+
     Returns:
+
     A -- output of activation function
+
     Z -- cached pre activation matrix
     """
 
@@ -50,12 +63,17 @@ def model_forward(X, parameters, keep_prob):
     Implement forward propagation sequence
 
     Arguments:
+
     X -- input data
+
     parameters -- initial weights
+
     keep_prob -- probability of keeping a node for dropout
 
     Returns:
+
     AL -- last post-activation value
+
     caches -- dictionary of dictionaries containing values computed in the forward pass
     {A: activation, D: mask, Z: pre-activation}
     """

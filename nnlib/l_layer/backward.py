@@ -8,15 +8,22 @@ def linear_backward(dZ, cache, alpha, keep_prob):
     Implement the linear portion of backward propagation
 
     Arguments:
+
     dZ -- Gradients of cost with respect to linear output of current layer l
+
     cache -- Tuple of values (A_prev, D_prev, W) coming from forward prop in current layer
+
     alpha -- l2 regularization term
 
-    Returns:
-    dA_prev -- Gradient of cost with respect to activation of previous layer (l-1)
-    dW -- Gradient of cost with respect to W (current layer l)
-    db -- Gradientof cost with respect to b (current layer l)
     keep_prob -- dropout probability
+
+    Returns:
+
+    dA_prev -- Gradient of cost with respect to activation of previous layer (l-1)
+
+    dW -- Gradient of cost with respect to W (current layer l)
+
+    db -- Gradientof cost with respect to b (current layer l)
     """
 
     A_prev, D_prev, W = cache
@@ -34,10 +41,15 @@ def linear_backward_activation(dA, cache, backward_func, alpha, keep_prob):
     Implement backward propagation of entire layer
 
     Arguments:
+
     dA -- post-activation gradient for current layer l
+
     cache -- tuple ((A_prev, D_prev, W), (Z, A))
+
     backward_func -- calculates derivative of activation
+
     alpha -- l2 regularization term
+
     keep_prob -- dropout probability
     """
 
@@ -53,14 +65,22 @@ def model_backward(AL, Y, parameters, caches, alpha, keep_prob):
     Implement backward propgation of arbitrary model
 
     Arguments:
+
     Al -- output of forward prop
+
     Y -- labels for data
+
     parameters -- dictionary of weights W, b
+
     caches -- dictionary of forward propagation values {A, D, Z}
+
     alpha -- l2 regularization term
     keep_prob -- dropout probability
 
+    keep_prob -- dropout probability
+
     Returns:
+
     grads -- dictionary of lists for gradients of each layer
     """
 

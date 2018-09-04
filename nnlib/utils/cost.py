@@ -6,12 +6,17 @@ def cross_entropy(AL, Y, parameters, alpha):
     Implement cross-entropy loss function with l2 regularization
 
     Arguments:
+
     AL -- probability vector corresponding to label predictions
+
     Y -- result vector
+
     parameters -- self explanatory
+
     alpha -- l2 regularization parameter
 
     Returns:
+
     cost -- cross-entropy cost with l2 regularization
     """
 
