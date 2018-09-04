@@ -15,6 +15,8 @@ def linear_backward(dZ, cache, alpha, keep_prob):
 
     alpha -- l2 regularization term
 
+    keep_prob -- dropout probability
+
     Returns:
 
     dA_prev -- Gradient of cost with respect to activation of previous layer (l-1)
@@ -22,8 +24,6 @@ def linear_backward(dZ, cache, alpha, keep_prob):
     dW -- Gradient of cost with respect to W (current layer l)
 
     db -- Gradientof cost with respect to b (current layer l)
-
-    keep_prob -- dropout probability
     """
 
     A_prev, D_prev, W = cache
@@ -75,6 +75,7 @@ def model_backward(AL, Y, parameters, caches, alpha, keep_prob):
     caches -- dictionary of forward propagation values {A, D, Z}
 
     alpha -- l2 regularization term
+    keep_prob -- dropout probability
 
     keep_prob -- dropout probability
 
